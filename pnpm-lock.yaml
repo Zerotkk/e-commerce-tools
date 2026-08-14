@@ -12,6 +12,9 @@ catalogs:
     vitest:
       specifier: latest
       version: 4.1.10
+    zod:
+      specifier: latest
+      version: 4.4.3
 
 importers:
 
@@ -25,6 +28,22 @@ importers:
         version: 7.0.2
       vitest:
         specifier: latest
+        version: 4.1.10(@types/node@26.2.0)(vite@8.2.1(@types/node@26.2.0))
+
+  packages/config:
+    dependencies:
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+    devDependencies:
+      '@types/node':
+        specifier: latest
+        version: 26.2.0
+      typescript:
+        specifier: 'catalog:'
+        version: 7.0.2
+      vitest:
+        specifier: 'catalog:'
         version: 4.1.10(@types/node@26.2.0)(vite@8.2.1(@types/node@26.2.0))
 
   packages/contracts:
@@ -560,6 +579,9 @@ packages:
     engines: {node: '>=8'}
     hasBin: true
 
+  zod@4.4.3:
+    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
+
 snapshots:
 
   '@jridgewell/sourcemap-codec@1.5.5': {}
@@ -924,3 +946,5 @@ snapshots:
     dependencies:
       siginfo: 2.0.0
       stackback: 0.0.2
+
+  zod@4.4.3: {}
