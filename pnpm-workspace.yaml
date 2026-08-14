@@ -1,0 +1,9 @@
+packages:
+  - apps/*
+  - packages/*
+  - tests/*
+  - spikes/*
+catalog:
+  typescript: latest
+  vitest: latest
+  zod: latest
