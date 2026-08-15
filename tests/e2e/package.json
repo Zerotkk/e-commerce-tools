@@ -1,0 +1,12 @@
+{
+  "name": "@ecommerce/e2e",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node run.mjs",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit"
+  },
+  "devDependencies": { "@playwright/test": "latest", "@types/node": "latest", "typescript": "catalog:" }
+}

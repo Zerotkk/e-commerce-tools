@@ -10,3 +10,4 @@ artifacts/private/
 .superpowers/
 playwright-report/
 test-results/
+*.tsbuildinfo

@@ -1,0 +1,15 @@
+{
+  "name": "@ecommerce/connectors",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": { "@ecommerce/contracts": "workspace:*" },
+  "devDependencies": { "typescript": "catalog:", "vitest": "catalog:" }
+}
