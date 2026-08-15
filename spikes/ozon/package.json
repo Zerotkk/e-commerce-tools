@@ -1,0 +1,22 @@
+{
+  "name": "@ecommerce/ozon-spike",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "build": "tsc --noEmit",
+    "category:find": "node --experimental-strip-types src/find-storage-ottoman.ts",
+    "product:import": "node --experimental-strip-types src/import-product.ts"
+  },
+  "dependencies": {
+    "@ecommerce/contracts": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
