@@ -8,8 +8,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
     "build": "tsc --noEmit",
-    "category:find": "node --experimental-strip-types src/find-storage-ottoman.ts",
-    "product:import": "node --experimental-strip-types src/import-product.ts"
+    "category:find": "node --experimental-transform-types src/find-storage-ottoman.ts",
+    "product:import": "node --experimental-transform-types src/import-product.ts"
   },
   "dependencies": {
     "@ecommerce/contracts": "workspace:*",
