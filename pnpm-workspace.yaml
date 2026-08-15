@@ -3,6 +3,8 @@ packages:
   - packages/*
   - tests/*
   - spikes/*
+allowBuilds:
+  unrs-resolver: true
 catalog:
   typescript: ^6.0.0
   vitest: latest
