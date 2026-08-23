@@ -57,7 +57,9 @@ export function findDescriptionCategoryMatches(
     if (node.disabled) return;
 
     if (node.description_category_id !== undefined && node.category_name && matchesQuery(node.category_name, queryTokens)) {
-      for (const child of node.children) {
+      const eligibleChildren = node.children.filter((child) => !child.disabled && child.type_id !== undefined && child.type_name);
+      const matchingTypes = eligibleChildren.filter((child) => child.type_name && matchesQuery(child.type_name, queryTokens));
+      for (const child of matchingTypes.length > 0 ? matchingTypes : eligibleChildren) {
         if (child.disabled || child.type_id === undefined || !child.type_name) continue;
         matches.push({
           descriptionCategoryId: node.description_category_id,

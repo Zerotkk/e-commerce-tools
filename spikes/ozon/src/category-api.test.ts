@@ -59,6 +59,34 @@ test("finds enabled storage ottoman product types beneath a matching category", 
   ]);
 });
 
+test("prefers an exact product-type match within a broader category", () => {
+  expect(
+    findDescriptionCategoryMatches(
+      {
+        result: [
+          {
+            description_category_id: 100,
+            category_name: "Стулья, скамьи, табуреты, пуфики",
+            disabled: false,
+            children: [
+              { type_id: 300, type_name: "Стул", disabled: false, children: [] },
+              { type_id: 301, type_name: "Пуф", disabled: false, children: [] },
+            ],
+          },
+        ],
+      },
+      "пуф",
+    ),
+  ).toEqual([
+    {
+      descriptionCategoryId: 100,
+      categoryName: "Стулья, скамьи, табуреты, пуфики",
+      typeId: 301,
+      typeName: "Пуф",
+    },
+  ]);
+});
+
 test("selects attributes whose permitted values must be loaded from an Ozon dictionary", () => {
   expect(
     selectDictionaryAttributes([

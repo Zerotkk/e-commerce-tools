@@ -37,7 +37,7 @@ await writeFile(
 );
 
 if (matches.length !== 1) {
-  console.log(JSON.stringify({ query, matches }, null, 2));
+  console.log(JSON.stringify(sanitizeEvidence({ query, matches }), null, 2));
   throw new Error("CATEGORY_SELECTION_REQUIRED");
 }
 
@@ -78,4 +78,4 @@ await writeFile(
   "utf8",
 );
 
-console.log(JSON.stringify({ selected, attributes: mappedAttributes, dictionaryValues }, null, 2));
+console.log(JSON.stringify(sanitizeEvidence({ selected, attributes: mappedAttributes, dictionaryValues }), null, 2));

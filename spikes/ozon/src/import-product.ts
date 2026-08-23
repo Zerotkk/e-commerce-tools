@@ -51,7 +51,7 @@ await writeFile(
   "utf8",
 );
 
-console.log(JSON.stringify({ offerId, invalidAttributeId, result, status }, null, 2));
+console.log(JSON.stringify(sanitizeEvidence({ offerId, invalidAttributeId, result, status }), null, 2));
 
 function isAttribute(value: unknown): value is { id: number } {
   return typeof value === "object" && value !== null && "id" in value && typeof value.id === "number";
