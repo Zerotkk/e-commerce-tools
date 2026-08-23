@@ -12,4 +12,6 @@ export const ImageSampleSchema = z.object({
 
 export type ImageSample = z.infer<typeof ImageSampleSchema>;
 
+export const parseImageSamples = (input: unknown): ImageSample[] => z.array(ImageSampleSchema).parse(input);
+
 export const sha256 = (bytes: Buffer): string => createHash("sha256").update(bytes).digest("hex");
