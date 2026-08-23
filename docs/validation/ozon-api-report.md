@@ -39,7 +39,7 @@ These endpoint versions must be confirmed against the official Seller API docume
 2. Run `pnpm --filter @ecommerce/ozon-spike category:find -- --query "пуф с ящиком для хранения"`, review the selected category/type, and populate the controlled fixture with its required attributes and public test image URL.
 3. Run `pnpm --filter @ecommerce/ozon-spike product:import -- --fixture spikes/ozon/fixtures/minimal-product.json` once. It uses the deterministic current-date offer ID `E2E-OTTOMAN-YYYYMMDD-01`, records only sanitised evidence, and queries the offer before import.
 4. Run the same import again to prove that the existing offer is not submitted twice.
-5. Remove one required attribute only in memory, import once, and record the terminal field-level error.
-6. Simulate or observe a timeout, query the offer before retrying, and record whether the outcome is confirmed or safely remains unknown.
+5. Run the same command with `--invalid-attribute-id <required-attribute-id>` to remove one required attribute only in memory, then record the terminal field-level error.
+6. Simulate or observe a timeout, query the offer before retrying, and record whether the outcome is confirmed or remains `unknown_after_timeout`; an unknown outcome must not be retried automatically.
 
 Do not commit environment files, credentials, authentication headers, or raw responses. Add only the sanitised files produced in `artifacts/spikes/ozon/redacted-responses/` after review.

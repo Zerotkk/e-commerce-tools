@@ -7,6 +7,10 @@ export interface OzonOfferLookupResponse {
   result?: { items?: unknown[] };
 }
 
+export function omitAttribute<T extends { id: number }>(attributes: T[], attributeId: number): T[] {
+  return attributes.filter((attribute) => attribute.id !== attributeId);
+}
+
 export function parseImportStatus(input: {
   result: {
     items: Array<{
@@ -40,6 +44,20 @@ export function parseImportStatus(input: {
   return { state: "pending" };
 }
 
+export async function pollImportStatus(
+  getImportStatus: (taskId: number) => Promise<OzonImportStatusDto>,
+  taskId: number,
+  options: { maxAttempts: number; delayMs: number },
+): Promise<OzonImportStatusDto> {
+  for (let attempt = 0; attempt < options.maxAttempts; attempt += 1) {
+    const status = await getImportStatus(taskId);
+    if (status.state !== "pending" || attempt === options.maxAttempts - 1) return status;
+    if (options.delayMs > 0) await new Promise((resolve) => setTimeout(resolve, options.delayMs));
+  }
+
+  return { state: "pending" };
+}
+
 export class OzonProductApi {
   constructor(private readonly http: OzonHttpClient) {}
 
@@ -50,6 +68,10 @@ export class OzonProductApi {
   async getImportStatus(taskId: number): Promise<OzonImportStatusDto> {
     const response = await this.http.post<Parameters<typeof parseImportStatus>[0]>("/v1/product/import/info", { task_id: taskId });
     return parseImportStatus(response);
+  }
+
+  async pollImportStatus(taskId: number): Promise<OzonImportStatusDto> {
+    return pollImportStatus(this.getImportStatus.bind(this), taskId, { maxAttempts: 5, delayMs: 1_000 });
   }
 
   async getByOfferId(offerId: string): Promise<OzonOfferLookupResponse> {

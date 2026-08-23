@@ -32,3 +32,12 @@ test("returns the task id needed to poll a newly submitted import", async () => 
 
   await expect(importSafely(api, "E2E-01", {})).resolves.toEqual({ state: "submitted", taskId: 12345 });
 });
+
+test("preserves an unresolved timeout as unknown instead of treating it as a failed import", async () => {
+  const api = {
+    importProduct: vi.fn().mockRejectedValue(new DOMException("timeout", "AbortError")),
+    getByOfferId: vi.fn().mockResolvedValue({ result: { items: [] } }),
+  };
+
+  await expect(importSafely(api, "E2E-01", {})).resolves.toEqual({ state: "unknown_after_timeout" });
+});

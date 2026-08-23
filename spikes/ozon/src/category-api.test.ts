@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { findDescriptionCategoryMatches, mapAttributeDefinitions } from "./category-api.js";
+import { findDescriptionCategoryMatches, mapAttributeDefinitions, selectDictionaryAttributes } from "./category-api.js";
 
 test("keeps required and dictionary metadata", () => {
   const result = mapAttributeDefinitions({
@@ -57,4 +57,13 @@ test("finds enabled storage ottoman product types beneath a matching category", 
       typeName: "Пуф",
     },
   ]);
+});
+
+test("selects attributes whose permitted values must be loaded from an Ozon dictionary", () => {
+  expect(
+    selectDictionaryAttributes([
+      { id: 10, name: "Материал", required: true, dictionaryId: 20, collection: true, valueType: "String" },
+      { id: 11, name: "Вес", required: true, dictionaryId: 0, collection: false, valueType: "Integer" },
+    ]),
+  ).toEqual([{ id: 10, name: "Материал", required: true, dictionaryId: 20, collection: true, valueType: "String" }]);
 });

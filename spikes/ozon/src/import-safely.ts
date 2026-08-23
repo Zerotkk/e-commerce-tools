@@ -16,7 +16,9 @@ export async function importSafely(api: ImportApi, offerId: string, item: unknow
     if (!(error instanceof DOMException) || error.name !== "AbortError") throw error;
 
     const afterTimeout = await api.getByOfferId(offerId);
-    return hasOffer(afterTimeout) ? { state: "confirmed_after_timeout" as const } : { state: "failed" as const };
+    return hasOffer(afterTimeout)
+      ? { state: "confirmed_after_timeout" as const }
+      : { state: "unknown_after_timeout" as const };
   }
 }
 

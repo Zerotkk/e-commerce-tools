@@ -42,6 +42,10 @@ export function mapAttributeDefinitions(input: DescriptionCategoryAttributeRespo
   }));
 }
 
+export function selectDictionaryAttributes(attributes: OzonAttributeDefinitionDto[]): OzonAttributeDefinitionDto[] {
+  return attributes.filter((attribute) => attribute.dictionaryId > 0);
+}
+
 export function findDescriptionCategoryMatches(
   input: DescriptionCategoryTreeResponse,
   query: string,

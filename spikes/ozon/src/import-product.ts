@@ -3,7 +3,7 @@ import { resolve } from "node:path";
 import { sanitizeEvidence } from "./evidence.ts";
 import { importSafely } from "./import-safely.ts";
 import { OzonHttpClient } from "./ozon-http.ts";
-import { OzonProductApi } from "./product-api.ts";
+import { omitAttribute, OzonProductApi } from "./product-api.ts";
 
 const clientId = process.env.OZON_CLIENT_ID;
 const apiKey = process.env.OZON_API_KEY;
@@ -20,6 +20,17 @@ if (item.description_category_id === 0 || item.type_id === 0 || !Array.isArray(i
   throw new Error("FIXTURE_NOT_CONFIGURED: supply reviewed category, type, and required attributes before a live import");
 }
 
+const invalidAttributeIndex = process.argv.indexOf("--invalid-attribute-id");
+const invalidAttributeId = invalidAttributeIndex >= 0 ? Number(process.argv[invalidAttributeIndex + 1]) : undefined;
+if (invalidAttributeId !== undefined) {
+  if (!Number.isInteger(invalidAttributeId)) throw new Error("--invalid-attribute-id must be an integer");
+  const attributes = item.attributes;
+  if (!Array.isArray(attributes) || !attributes.every((attribute) => isAttribute(attribute))) {
+    throw new Error("FIXTURE_ATTRIBUTES_INVALID");
+  }
+  item.attributes = omitAttribute(attributes, invalidAttributeId);
+}
+
 const date = new Date().toISOString().slice(0, 10).replaceAll("-", "");
 const offerId = `E2E-OTTOMAN-${date}-01`;
 item.offer_id = offerId;
@@ -28,7 +39,7 @@ const diagnostics: unknown[] = [];
 const http = new OzonHttpClient({ clientId, apiKey, onDiagnostic: (record) => diagnostics.push(record) });
 const productApi = new OzonProductApi(http);
 const result = await importSafely(productApi, offerId, item);
-const status = result.state === "submitted" ? await productApi.getImportStatus(result.taskId) : null;
+const status = result.state === "submitted" ? await productApi.pollImportStatus(result.taskId) : null;
 
 const evidenceDirectory = resolve(import.meta.dirname, "../../../artifacts/spikes/ozon/redacted-responses");
 await mkdir(evidenceDirectory, { recursive: true });
@@ -40,4 +51,8 @@ await writeFile(
   "utf8",
 );
 
-console.log(JSON.stringify({ offerId, result, status }, null, 2));
+console.log(JSON.stringify({ offerId, invalidAttributeId, result, status }, null, 2));
+
+function isAttribute(value: unknown): value is { id: number } {
+  return typeof value === "object" && value !== null && "id" in value && typeof value.id === "number";
+}

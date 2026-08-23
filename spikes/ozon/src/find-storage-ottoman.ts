@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 import {
   findDescriptionCategoryMatches,
   mapAttributeDefinitions,
+  selectDictionaryAttributes,
   type DescriptionCategoryTreeResponse,
 } from "./category-api.ts";
 import { sanitizeEvidence } from "./evidence.ts";
@@ -58,11 +59,23 @@ const attributes = await http.post<{
   type_id: selected.typeId,
   language: "RU",
 });
+const mappedAttributes = mapAttributeDefinitions(attributes);
+const dictionaryValues = await Promise.all(
+  selectDictionaryAttributes(mappedAttributes).map(async (attribute) => ({
+    attributeId: attribute.id,
+    values: await http.post<unknown>("/v1/description-category/attribute/values", {
+      description_category_id: selected.descriptionCategoryId,
+      type_id: selected.typeId,
+      attribute_id: attribute.id,
+      limit: 100,
+    }),
+  })),
+);
 
 await writeFile(
   resolve(evidenceDirectory, "category-attributes.json"),
-  `${JSON.stringify(sanitizeEvidence({ selected, attributes: mapAttributeDefinitions(attributes), diagnostics }), null, 2)}\n`,
+  `${JSON.stringify(sanitizeEvidence({ selected, attributes: mappedAttributes, dictionaryValues, diagnostics }), null, 2)}\n`,
   "utf8",
 );
 
-console.log(JSON.stringify({ selected, attributes: mapAttributeDefinitions(attributes) }, null, 2));
+console.log(JSON.stringify({ selected, attributes: mappedAttributes, dictionaryValues }, null, 2));
