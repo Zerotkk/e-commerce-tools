@@ -6,6 +6,14 @@ This spike has a tested local adapter and redaction path. On 2026-08-23, credent
 
 Live product import, task-status, invalid-field, duplicate, timeout, rate-limit, and Ozon-side draft validation remain pending a client-approved, truthful test-product payload and public image URL. Sanitised read evidence is local-only under `artifacts/spikes/ozon/redacted-responses/` and is not committed.
 
+## Recovery checkpoint (2026-09-13)
+
+- Validation implementation commit: `c877dcf spike: verify Ozon category discovery`.
+- Verified: the three read-only category endpoints returned HTTP 200; the local spike suite passed 15 tests and type checking; two local evidence files parse successfully and redact credential header values.
+- Not verified: import, import status, invalid-field mapping, duplicate prevention, timeout recovery, rate limits, and Ozon-side draft behavior. No product write was attempted.
+- Delivery blocker: the single `git push origin agent/ozon-api-spike` attempt failed with `Failed to connect to github.com port 443 after 21109 ms`.
+- Next command after network recovery: `git push origin agent/ozon-api-spike`.
+
 ## Implemented and locally verified
 
 - `POST /v1/description-category/tree` client path and nested category/type search.
