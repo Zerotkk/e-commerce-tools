@@ -85,6 +85,14 @@ Conflicting fields: none.
 
 Blocking selector/acquisition failures: amazon-01:AMAZON_CAPTCHA_INTERSTITIAL, amazon-02:AMAZON_CAPTCHA_INTERSTITIAL, amazon-03:AMAZON_CAPTCHA_INTERSTITIAL, amazon-04:AMAZON_CAPTCHA_INTERSTITIAL, amazon-05:AMAZON_CAPTCHA_INTERSTITIAL, amazon-06:AMAZON_CAPTCHA_INTERSTITIAL, amazon-07:AMAZON_CAPTCHA_INTERSTITIAL, amazon-08:AMAZON_CAPTCHA_INTERSTITIAL, amazon-09:AMAZON_CAPTCHA_INTERSTITIAL, amazon-11:page_goto__Timeout_30000ms_exceeded__Call_log____2m____navigating_to__https___www_amazon_com_dp_B0DXF1K79Z___waiting_unt, amazon-12:page_goto__Timeout_30000ms_exceeded__Call_log____2m____navigating_to__https___www_amazon_com_dp_B0FXWZDK62___waiting_unt, amazon-13:AMAZON_CAPTCHA_INTERSTITIAL, amazon-14:AMAZON_CAPTCHA_INTERSTITIAL.
 
+## Delivery recovery record
+
+- Latest verified collection-evidence commit: `58bd3be` (`docs: record authorized Amazon sample evidence`).
+- Verified: the authorized Chrome read-only `amazon-01` evidence above; Amazon-spike lint, typecheck, and tests completed before this delivery; the branch was pushed to `origin/agent/amazon-collection-spike` and Draft PR #2 was created against `main`.
+- Not verified: the anonymous blind-sample fields remain uncollected, so the blind gate has not passed.
+- Exact blocker: anonymous Playwright acquisition returned `AMAZON_CAPTCHA_INTERSTITIAL` for the listed samples and 30-second page-navigation timeouts for `amazon-11` and `amazon-12`.
+- Next executable command, only after renewed collection authorization and a valid acquisition path: `pnpm --filter @ecommerce/amazon-spike collect -- --samples spikes/amazon/samples.json --delay-ms 5000`.
+
 ## Decision gate
 
 **not_accepted** — `BLIND_VISIBLE_PAGE_REVIEW_INCOMPLETE`. Acceptance requires completed visible-page comparison for every blind field and no known cross-variant contamination.
