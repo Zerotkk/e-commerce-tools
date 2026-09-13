@@ -92,6 +92,8 @@ Blocking selector/acquisition failures: amazon-01:AMAZON_CAPTCHA_INTERSTITIAL, a
 - Not verified: the anonymous blind-sample fields remain uncollected, so the blind gate has not passed.
 - Exact blocker: anonymous Playwright acquisition returned `AMAZON_CAPTCHA_INTERSTITIAL` for the listed samples and 30-second page-navigation timeouts for `amazon-11` and `amazon-12`.
 - Next executable command, only after renewed collection authorization and a valid acquisition path: `pnpm --filter @ecommerce/amazon-spike collect -- --samples spikes/amazon/samples.json --delay-ms 5000`.
+- Delivery blocker (2026-09-13): the single push attempt for the recovery record failed with `Failed to connect to github.com port 443 after 21189 ms: Could not connect to server`; local commit `d98ad53` is not on `origin`.
+- Next delivery command, after GitHub connectivity is restored: `git push`.
 
 ## Decision gate
 
