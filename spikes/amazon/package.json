@@ -1,0 +1,24 @@
+{
+  "name": "@ecommerce/amazon-spike",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "build": "tsc --noEmit",
+    "collect": "tsx src/run-samples.ts",
+    "report": "tsx src/write-report.ts"
+  },
+  "dependencies": {
+    "@ecommerce/contracts": "workspace:*",
+    "playwright": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "tsx": "latest",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

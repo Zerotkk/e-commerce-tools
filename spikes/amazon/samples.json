@@ -1,0 +1,18 @@
+{
+  "samples": [
+    { "sampleId": "amazon-01", "url": "https://www.amazon.com/Storage-Ottoman-EYLAEM-Foldable-17x13x13in/dp/B092LVTSD4/ref=", "group": "development" },
+    { "sampleId": "amazon-02", "url": "https://www.amazon.com/ALASDO-Storage-Ottoman-Footrest-13inches/dp/B08R93BQ3D/ref=", "group": "development" },
+    { "sampleId": "amazon-03", "url": "https://www.amazon.com/Sweetcrispy-Footstools-Anti-Slip-Adjustable-Footrest/dp/B0DC6NJ5P1/ref=", "group": "development" },
+    { "sampleId": "amazon-04", "url": "https://www.amazon.com/SONGMICS-Footrest-Capacity-Entryway-ULSF102G01/dp/B0BJDZFWFD/ref=", "group": "development" },
+    { "sampleId": "amazon-05", "url": "https://www.amazon.com/SONGMICS-Collapsible-Storage-Comfortable-ULSF14GYZ/dp/B07FCH521F/ref=", "group": "regression" },
+    { "sampleId": "amazon-06", "url": "https://www.amazon.com/SONGMICS-Foldable-Capacity-Entryway-ULSF277R01/dp/B0CCZWFMBF/ref=", "group": "regression" },
+    { "sampleId": "amazon-07", "url": "https://www.amazon.com/SONGMICS-Storage-Ottoman-Footstool-Decoration/dp/B08FCZ2L9X/ref=", "group": "regression" },
+    { "sampleId": "amazon-08", "url": "https://www.amazon.com/SONGMICS-Storage-Foldable-Capacity-ULSF200R01/dp/B0CCZXJCQL/ref=", "group": "regression" },
+    { "sampleId": "amazon-09", "url": "https://www.amazon.com/DUMOS-Round-Ottomans-Storage-Vanity/dp/B0H8WYMT13/ref=", "group": "regression" },
+    { "sampleId": "amazon-10", "url": "https://www.amazon.com/DocSafe-Fireproof-Important-Documents-Waterproof/dp/B0BLNJLY94/ref=", "group": "blind", "excluded": true, "exclusionReason": "CATEGORY_MISMATCH_PENDING_REVIEW" },
+    { "sampleId": "amazon-11", "url": "https://www.amazon.com/DUMOS-Ottoman-Footstool-Adjustable-Dressing/dp/B0DXF1K79Z/ref=", "group": "blind" },
+    { "sampleId": "amazon-12", "url": "https://www.amazon.com/Manyday-Storage-Ottoman-Anti-Slip-Dressing/dp/B0FXWZDK62/ref=", "group": "blind" },
+    { "sampleId": "amazon-13", "url": "https://www.amazon.com/SONGMICS-Storage-Ottoman-Hallway-ULOM515WD01/dp/B0FSD1F7YD/ref=", "group": "blind" },
+    { "sampleId": "amazon-14", "url": "https://www.amazon.com/Bsketa%C2%AE-Folding-Storage-Ottoman-Foldable/dp/B0DP8LD4VK/ref=", "group": "blind" }
+  ]
+}
