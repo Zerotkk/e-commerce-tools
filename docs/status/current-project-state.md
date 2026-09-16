@@ -1,11 +1,11 @@
 # 项目当前检查点
 
-更新时间：2026-09-13（总控制台）
+更新时间：2026-09-16（总控制台）
 
 ## 当前阶段
 
 - Phase 0 基础平台：完成，`main` 提交 `e0d86c4`。
-- Phase 1 外部能力门：执行中；未验收，禁止启动 Phase 2。
+- Phase 1 外部能力门：报告已收口，但三个能力路径均未达到完整验收；禁止启动 Phase 2。
 - Phase 2 核心数据域与账号：未开始。
 - Phase 3 俄语内容与审核台：未开始。
 - Phase 4 端到端集成：未开始。
@@ -14,9 +14,15 @@
 
 | 流 | 分支与最近提交 | 结论 | 下一步 |
 | --- | --- | --- | --- |
-| 1A Amazon | `agent/amazon-collection-spike` / `58bd3be` | Chrome 单样本已核对；匿名批量路径因 CAPTCHA/超时为 `not_accepted` | 推送分支并建立 Draft PR；不得把单样本作为盲样本验收 |
-| 1B Ozon | `agent/ozon-api-spike` / `c877dcf` | 只读类目、属性与字典验证完成；未创建测试商品 | 核对 import、幂等与恢复所需的最小真实商品资料 |
-| 1C Images | `agent/image-pipeline-spike` / `8f70592` | 已定义主体保真安全边界；无真实流水线证据 | 仅使用本地已授权原图进行人审验证；无原图则报告缺口 |
+| 1A Amazon | `agent/amazon-collection-spike` / `12c8ca8`，远程落后 2 提交，Draft PR [#2](https://github.com/Zerotkk/e-commerce-tools/pull/2) | Chrome 单样本已核对；匿名批量路径因 CAPTCHA/超时为 `not_accepted` | GitHub 可连通时推送；选择可盲样本验证的采集路径，不能把单样本作为验收 |
+| 1B Ozon | `agent/ozon-api-spike` / `bcafe0a`，远程落后 2 提交，Draft PR [#1](https://github.com/Zerotkk/e-commerce-tools/pull/1) | 分类、属性、字典只读验证通过；导入、幂等、恢复和远端草稿未验证 | 提供受控测试商品资料与明确创建授权后完成导入验证 |
+| 1C Images | `agent/image-pipeline-spike` / `8f70592`，已推送，Draft PR [#3](https://github.com/Zerotkk/e-commerce-tools/pull/3) | 离线主体保真安全校验通过；无真实图片验证 | 提供一张已确认使用权的本地原始产品图，进行人工保真审核 |
+
+## 启动下一阶段前的最小缺口
+
+- Amazon：可重复、可盲样本核验的当前变体采集路径。
+- Ozon：固定测试货号、品牌/无品牌、型号、名称、描述、公开图片、实测长宽高重量、价格、VAT，以及创建受控测试卡的明确授权。
+- 图片：一张已确认使用权的本地原始产品图。
 
 ## 中断恢复规则
 
