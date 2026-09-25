@@ -1,6 +1,6 @@
 # 项目当前检查点
 
-更新时间：2026-09-16（总控制台）
+更新时间：2026-09-25（总控制台）
 
 ## 当前阶段
 
@@ -10,12 +10,18 @@
 - Phase 3 俄语内容与审核台：未开始。
 - Phase 4 端到端集成：未开始。
 
+## 粗略进度与剩余工期
+
+- 当前约完成 MVP 的 35%；这是按阶段交付物估算，不是按代码行统计。
+- 所需真实输入及时到位且外部服务可用时，预计剩余 8–12 个有效开发日：Phase 1 验收 2–3 日、Phase 2 核心域 2–3 日、Phase 3 内容与审核 2–3 日、Phase 4 集成验收 2–3 日。
+- CAPTCHA、账号审批、API 风控、用户资料等待时间不计入上述开发日。
+
 ## 任务状态
 
 | 流 | 分支与最近提交 | 结论 | 下一步 |
 | --- | --- | --- | --- |
-| 1A Amazon | `agent/amazon-collection-spike` / `12c8ca8`，远程落后 2 提交，Draft PR [#2](https://github.com/Zerotkk/e-commerce-tools/pull/2) | Chrome 单样本已核对；匿名批量路径因 CAPTCHA/超时为 `not_accepted` | GitHub 可连通时推送；选择可盲样本验证的采集路径，不能把单样本作为验收 |
-| 1B Ozon | `agent/ozon-api-spike` / `bcafe0a`，远程落后 2 提交，Draft PR [#1](https://github.com/Zerotkk/e-commerce-tools/pull/1) | 分类、属性、字典只读验证通过；导入、幂等、恢复和远端草稿未验证 | 提供受控测试商品资料与明确创建授权后完成导入验证 |
+| 1A Amazon | `agent/amazon-collection-spike` / `12c8ca8`，已推送，Draft PR [#2](https://github.com/Zerotkk/e-commerce-tools/pull/2) | Chrome 单样本已核对；匿名批量路径因 CAPTCHA/超时为 `not_accepted` | 授权使用 3 个未使用链接做登录 Chrome 只读盲样本验证，不能把单样本作为验收 |
+| 1B Ozon | `agent/ozon-api-spike` / `bcafe0a`，已推送，Draft PR [#1](https://github.com/Zerotkk/e-commerce-tools/pull/1) | 分类、属性、字典只读验证通过；导入、幂等、恢复和远端草稿未验证 | 提供受控测试商品资料与明确创建授权后完成导入验证 |
 | 1C Images | `agent/image-pipeline-spike` / `8f70592`，已推送，Draft PR [#3](https://github.com/Zerotkk/e-commerce-tools/pull/3) | 离线主体保真安全校验通过；无真实图片验证 | 提供一张已确认使用权的本地原始产品图，进行人工保真审核 |
 
 ## 启动下一阶段前的最小缺口
