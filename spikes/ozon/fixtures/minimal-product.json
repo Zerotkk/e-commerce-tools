@@ -1,0 +1,15 @@
+{
+  "offer_id": "E2E-OTTOMAN-YYYYMMDD-01",
+  "name": "Internal Ozon API validation sample",
+  "description_category_id": 0,
+  "type_id": 0,
+  "price": "999",
+  "currency_code": "RUB",
+  "vat": "0.2",
+  "height": 1,
+  "depth": 1,
+  "width": 1,
+  "weight": 1,
+  "images": ["https://example.invalid/controlled-ottoman.jpg"],
+  "attributes": []
+}
