@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2026-08-23T07:28:16.874Z",
+  "delayMs": 5000,
+  "results": [
+    {
+      "sampleId": "amazon-01",
+      "group": "development",
+      "status": "failed",
+      "errorCode": "AMAZON_CAPTCHA_INTERSTITIAL",
+      "durationMs": 2512
+    },
+    {
+      "sampleId": "amazon-02",
+      "group": "development",
+      "status": "failed",
+      "errorCode": "AMAZON_CAPTCHA_INTERSTITIAL",
+      "durationMs": 2225
+    },
+    {
+      "sampleId": "amazon-03",
+      "group": "development",
+      "status": "failed",
+      "errorCode": "AMAZON_CAPTCHA_INTERSTITIAL",
+      "durationMs": 1885
+    },
+    {
+      "sampleId": "amazon-04",
+      "group": "development",
+      "status": "failed",
+      "errorCode": "AMAZON_CAPTCHA_INTERSTITIAL",
+      "durationMs": 1975
+    },
+    {
+      "sampleId": "amazon-05",
+      "group": "regression",
+      "status": "failed",
+      "errorCode": "AMAZON_CAPTCHA_INTERSTITIAL",
+      "durationMs": 1706
+    },
+    {
+      "sampleId": "amazon-06",
+      "group": "regression",
+      "status": "failed",
+      "errorCode": "AMAZON_CAPTCHA_INTERSTITIAL",
+      "durationMs": 2034
+    },
+    {
+      "sampleId": "amazon-07",
+      "group": "regression",
+      "status": "failed",
+      "errorCode": "AMAZON_CAPTCHA_INTERSTITIAL",
+      "durationMs": 1647
+    },
+    {
+      "sampleId": "amazon-08",
+      "group": "regression",
+      "status": "failed",
+      "errorCode": "AMAZON_CAPTCHA_INTERSTITIAL",
+      "durationMs": 1861
+    },
+    {
+      "sampleId": "amazon-09",
+      "group": "regression",
+      "status": "failed",
+      "errorCode": "AMAZON_CAPTCHA_INTERSTITIAL",
+      "durationMs": 1508
+    },
+    {
+      "sampleId": "amazon-10",
+      "group": "blind",
+      "status": "excluded",
+      "errorCode": "CATEGORY_MISMATCH_PENDING_REVIEW",
+      "durationMs": 0
+    },
+    {
+      "sampleId": "amazon-11",
+      "group": "blind",
+      "status": "failed",
+      "errorCode": "page_goto__Timeout_30000ms_exceeded__Call_log____2m____navigating_to__https___www_amazon_com_dp_B0DXF1K79Z___waiting_unt",
+      "durationMs": 30797
+    },
+    {
+      "sampleId": "amazon-12",
+      "group": "blind",
+      "status": "failed",
+      "errorCode": "page_goto__Timeout_30000ms_exceeded__Call_log____2m____navigating_to__https___www_amazon_com_dp_B0FXWZDK62___waiting_unt",
+      "durationMs": 30869
+    },
+    {
+      "sampleId": "amazon-13",
+      "group": "blind",
+      "status": "failed",
+      "errorCode": "AMAZON_CAPTCHA_INTERSTITIAL",
+      "durationMs": 1828
+    },
+    {
+      "sampleId": "amazon-14",
+      "group": "blind",
+      "status": "failed",
+      "errorCode": "AMAZON_CAPTCHA_INTERSTITIAL",
+      "durationMs": 1581
+    }
+  ]
+}
