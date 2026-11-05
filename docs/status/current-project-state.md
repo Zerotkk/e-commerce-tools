@@ -44,6 +44,12 @@
 
 2026-11-07 周末会话只恢复 Amazon 1A：用户在已登录 Chrome 打开《测试链接.xlsx》第 2 条并连接 Codex 扩展；总控确认连接后才启动采集。1A 完成或精确阻塞前，不启动图片、Ozon 或 Phase 2。
 
+## GitHub 交付状态
+
+- 控制重置已本地提交：`11218c4 docs: reset project control for weekend execution`。
+- 2026-11-05 唯一一次 `git push origin main` 失败：`Failed to connect to github.com port 443 after 21123 ms: Could not connect to server`。
+- 未重复推送；远程 `main` 暂仍为 `252244a`。网络恢复后的下一条命令：`git push origin main`。
+
 ## 中断恢复规则
 
 每个独立任务在暂停、额度不足、外部调用失败或准备结束前，必须先：
