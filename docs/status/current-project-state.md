@@ -1,6 +1,6 @@
 # 项目当前检查点
 
-更新时间：2026-09-25（总控制台）
+更新时间：2026-11-05（总控制台）
 
 ## 当前阶段
 
@@ -16,19 +16,33 @@
 - 所需真实输入及时到位且外部服务可用时，预计剩余 8–12 个有效开发日：Phase 1 验收 2–3 日、Phase 2 核心域 2–3 日、Phase 3 内容与审核 2–3 日、Phase 4 集成验收 2–3 日。
 - CAPTCHA、账号审批、API 风控、用户资料等待时间不计入上述开发日。
 
+## 2026-11-05 控制重置
+
+- 项目代码与远程分支未丢失，但 2026-09-25 后没有新增业务提交；当前进度仍约 35%。
+- 所有旧业务任务均已停止；当前没有后台业务任务运行。
+- 根因：旧业务分支不包含后来加入 `main` 的本状态文件，任务按相对路径读取检查点失败；并行任务又在额度耗尽时中断，导致总控没有完成回收。
+- 以后严格一次只运行一个业务任务；每次从本文件的绝对路径读取状态，完成证据、验证、提交、推送和总控更新后才启动下一项。
+- 用户按周末执行，每天最多五小时；每次预留最后 45 分钟保存断点。
+- 详细计划：[2026-11-05 周末控制重置计划](../superpowers/plans/2026-11-05-weekend-control-reset.md)。
+- 目标完成日：2026-12-13；外部阻塞预留至 2026-12-20。
+
 ## 任务状态
 
 | 流 | 分支与最近提交 | 结论 | 下一步 |
 | --- | --- | --- | --- |
-| 1A Amazon | `agent/amazon-collection-spike` / `12c8ca8`，已推送，Draft PR [#2](https://github.com/Zerotkk/e-commerce-tools/pull/2) | Chrome 单样本已核对；匿名批量路径因 CAPTCHA/超时为 `not_accepted` | 授权使用 3 个未使用链接做登录 Chrome 只读盲样本验证，不能把单样本作为验收 |
-| 1B Ozon | `agent/ozon-api-spike` / `bcafe0a`，已推送，Draft PR [#1](https://github.com/Zerotkk/e-commerce-tools/pull/1) | 分类、属性、字典只读验证通过；导入、幂等、恢复和远端草稿未验证 | 提供受控测试商品资料与明确创建授权后完成导入验证 |
-| 1C Images | `agent/image-pipeline-spike` / `8f70592`，已推送，Draft PR [#3](https://github.com/Zerotkk/e-commerce-tools/pull/3) | 离线主体保真安全校验通过；无真实图片验证 | 提供一张已确认使用权的本地原始产品图，进行人工保真审核 |
+| 1A Amazon | `agent/amazon-collection-spike` / `12c8ca8`，已推送，Draft PR [#2](https://github.com/Zerotkk/e-commerce-tools/pull/2) | Chrome 第 1 条单样本已核对；第 2 条打开后因额度耗尽未采集；门仍为 `not_accepted` | 周末连接已登录 Chrome 扩展，从第 2–4 条顺序完成盲样本验证 |
+| 1B Ozon | `agent/ozon-api-spike` / `bcafe0a`，已推送，Draft PR [#1](https://github.com/Zerotkk/e-commerce-tools/pull/1) | 分类、属性、字典只读验证通过；没有创建商品；本地保留两个脱敏响应与一个未完成的包构建配置 | 提供真实型号、实测长宽高重量、RUB 价格、VAT 和图片后完成受控导入验证 |
+| 1C Images | `agent/image-pipeline-spike` / `8f70592`，已推送，Draft PR [#3](https://github.com/Zerotkk/e-commerce-tools/pull/3) | 离线主体保真安全校验通过；额度耗尽前确认 Amazon 报告未记录 Black 主图 URL，因此没有下载或处理图片 | 先由 1A 保存当前变体主图 URL，再进行真实图片验证与人工审核 |
 
 ## 启动下一阶段前的最小缺口
 
 - Amazon：可重复、可盲样本核验的当前变体采集路径。
-- Ozon：固定测试货号、品牌/无品牌、型号、名称、描述、公开图片、实测长宽高重量、价格、VAT，以及创建受控测试卡的明确授权。
-- 图片：一张已确认使用权的本地原始产品图。
+- Ozon：已具备受控测试卡授权；仍需固定测试货号、品牌/无品牌、型号、名称、描述、公开图片、实测长宽高重量、价格和 VAT。
+- 图片：第 1 条商品已确认本地验证使用权；仍需由 Amazon 采集保存当前 Black 变体主图 URL，或由用户提供对应原图。
+
+## 下一次唯一允许动作
+
+2026-11-07 周末会话只恢复 Amazon 1A：用户在已登录 Chrome 打开《测试链接.xlsx》第 2 条并连接 Codex 扩展；总控确认连接后才启动采集。1A 完成或精确阻塞前，不启动图片、Ozon 或 Phase 2。
 
 ## 中断恢复规则
 
