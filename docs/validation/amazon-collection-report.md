@@ -152,6 +152,11 @@ Blocking selector/acquisition failures: amazon-01:AMAZON_CAPTCHA_INTERSTITIAL, a
 
 ## Delivery recovery record
 
+- 2026-11-07 blind-sample checkpoint: branch `5c6a263` and its worktree were clean, but the computer-use browser inventory exposed only the in-app browser and MCP Apps. Google Chrome was not running and no Chrome-extension tab was available.
+- Verified: no page, CAPTCHA, variant selector, cookie, credential, or image was accessed during this checkpoint.
+- Not verified: `amazon-11` through `amazon-14` remain entirely uncollected by visible-page review; the gate remains `not_accepted`.
+- Exact blocker: the authorized normal-Chrome extension connection was unavailable before `amazon-11` could be opened.
+- Next action: start normal Chrome, open `https://www.amazon.com/dp/B0DXF1K79Z`, and connect that tab through the Codex extension for read-only collection.
 - 2026-11-07 checkpoint: workbook rows 2–4 were verified through the authorized Chrome read-only session; the current-page evidence is recorded above. No CAPTCHA occurred and no variant option was changed.
 - Verified: row-2 URL/page ASIN `B08R93BQ3D`, row-3 URL/page ASIN `B0DC6NJ5P1`, and row-4 URL/page ASIN `B0BJDZFWFD` matched. The row-4 dimensions remain `conflict`; this does not accept the anonymous blind gate.
 - Verified: after applying the repository's existing `allowBuilds` policy for `esbuild` and `unrs-resolver`, Amazon-spike test, lint, and typecheck all passed; the test suite reported 5 files and 13 tests passed.
@@ -159,7 +164,7 @@ Blocking selector/acquisition failures: amazon-01:AMAZON_CAPTCHA_INTERSTITIAL, a
 - Verified: the authorized Chrome read-only `amazon-01` evidence above; Amazon-spike lint, typecheck, and tests completed before this delivery; the branch was pushed to `origin/agent/amazon-collection-spike` and Draft PR #2 was created against `main`.
 - Not verified: the anonymous blind-sample fields remain uncollected, so the blind gate has not passed.
 - Exact blocker: anonymous Playwright acquisition returned `AMAZON_CAPTCHA_INTERSTITIAL` for the listed samples and 30-second page-navigation timeouts for `amazon-11` and `amazon-12`.
-- Next executable command, only after renewed collection authorization and a valid acquisition path: `pnpm --filter @ecommerce/amazon-spike collect -- --samples spikes/amazon/samples.json --delay-ms 5000`.
+- Superseded anonymous-collector follow-up: do not rerun `pnpm --filter @ecommerce/amazon-spike collect` for blind acceptance until visible Chrome evidence is available.
 - Delivery recovered on 2026-11-07: commit `19ed5d1` was pushed and Draft PR #2 was verified at that head before the dependency-policy follow-up.
 
 ## Decision gate
