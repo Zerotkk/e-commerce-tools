@@ -1,6 +1,6 @@
 # 项目当前检查点
 
-更新时间：2026-11-05（总控制台）
+更新时间：2026-11-07（总控制台）
 
 ## 当前阶段
 
@@ -30,7 +30,7 @@
 
 | 流 | 分支与最近提交 | 结论 | 下一步 |
 | --- | --- | --- | --- |
-| 1A Amazon | `agent/amazon-collection-spike` / `12c8ca8`，已推送，Draft PR [#2](https://github.com/Zerotkk/e-commerce-tools/pull/2) | Chrome 第 1 条单样本已核对；第 2 条打开后因额度耗尽未采集；门仍为 `not_accepted` | 周末连接已登录 Chrome 扩展，从第 2–4 条顺序完成盲样本验证 |
+| 1A Amazon | `agent/amazon-collection-spike` / `5c6a263`，已推送，Draft PR [#2](https://github.com/Zerotkk/e-commerce-tools/pull/2) | Chrome 第 2–4 条已只读核对；test 5 文件/13 用例、lint、typecheck 通过；真实盲样本 `amazon-11`–`amazon-14` 仍未核对，门仍为 `not_accepted` | 保持 1A 为唯一活动流，经已连接 Chrome 依次只读核对 `amazon-11`–`amazon-14`，不绕过 CAPTCHA |
 | 1B Ozon | `agent/ozon-api-spike` / `bcafe0a`，已推送，Draft PR [#1](https://github.com/Zerotkk/e-commerce-tools/pull/1) | 分类、属性、字典只读验证通过；没有创建商品；本地保留两个脱敏响应与一个未完成的包构建配置 | 提供真实型号、实测长宽高重量、RUB 价格、VAT 和图片后完成受控导入验证 |
 | 1C Images | `agent/image-pipeline-spike` / `8f70592`，已推送，Draft PR [#3](https://github.com/Zerotkk/e-commerce-tools/pull/3) | 离线主体保真安全校验通过；额度耗尽前确认 Amazon 报告未记录 Black 主图 URL，因此没有下载或处理图片 | 先由 1A 保存当前变体主图 URL，再进行真实图片验证与人工审核 |
 
@@ -42,13 +42,14 @@
 
 ## 下一次唯一允许动作
 
-2026-11-07 周末会话只恢复 Amazon 1A：用户在已登录 Chrome 打开《测试链接.xlsx》第 2 条并连接 Codex 扩展；总控确认连接后才启动采集。1A 完成或精确阻塞前，不启动图片、Ozon 或 Phase 2。
+继续 Amazon 1A，不启动图片、Ozon 或 Phase 2。当前计划把工作簿第 2–4 条称为“盲样本”，但正式样本清单将它们标为 `development`，正式门要求 `amazon-11`–`amazon-14`；按更严格标准处理。下一步通过已连接 Chrome 依次只读核对这四个真实盲样本，遇到 CAPTCHA、连接丢失或变体不明立即停止并记录。
 
 ## GitHub 交付状态
 
 - 控制重置已本地提交：`11218c4 docs: reset project control for weekend execution`。
 - 2026-11-05 唯一一次 `git push origin main` 失败：`Failed to connect to github.com port 443 after 21123 ms: Could not connect to server`。
-- 未重复推送；远程 `main` 暂仍为 `252244a`。网络恢复后的下一条命令：`git push origin main`。
+- 2026-11-07 Amazon 分支推送已恢复；Draft PR #2 已核对为 OPEN/Draft，head 为 `5c6a2638b6b98ff215a6bc6546632c7295493d4b`。
+- 本检查点提交后只尝试一次 `git push origin main`；结果必须记录在本文件或最终回报中。
 
 ## 中断恢复规则
 
