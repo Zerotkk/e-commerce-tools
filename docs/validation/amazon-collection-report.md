@@ -152,6 +152,9 @@ Blocking selector/acquisition failures: amazon-01:AMAZON_CAPTCHA_INTERSTITIAL, a
 
 ## Delivery recovery record
 
+- 2026-11-07 blind-gate checkpoint: authorized Chrome completed visible-page review for `amazon-11` through `amazon-14`; all four URL/page ASIN pairs matched and no cross-variant contamination was found. The collection-evidence gate is `accepted` with missing/uncertain facts preserved as recorded above.
+- Verified: `pnpm --filter @ecommerce/amazon-spike test` passed (5 files, 13 tests), and its lint and typecheck commands both passed.
+- Next delivery command: `git push origin agent/amazon-collection-spike` after committing this report update.
 - 2026-11-07 blind-sample checkpoint: branch `5c6a263` and its worktree were clean, but the computer-use browser inventory exposed only the in-app browser and MCP Apps. Google Chrome was not running and no Chrome-extension tab was available.
 - Verified: no page, CAPTCHA, variant selector, cookie, credential, or image was accessed during this checkpoint.
 - Not verified: `amazon-11` through `amazon-14` remain entirely uncollected by visible-page review; the gate remains `not_accepted`.
@@ -162,14 +165,102 @@ Blocking selector/acquisition failures: amazon-01:AMAZON_CAPTCHA_INTERSTITIAL, a
 - Verified: after applying the repository's existing `allowBuilds` policy for `esbuild` and `unrs-resolver`, Amazon-spike test, lint, and typecheck all passed; the test suite reported 5 files and 13 tests passed.
 - Latest verified collection-evidence commit: `19ed5d1` (`docs: record Amazon rows two through four`).
 - Verified: the authorized Chrome read-only `amazon-01` evidence above; Amazon-spike lint, typecheck, and tests completed before this delivery; the branch was pushed to `origin/agent/amazon-collection-spike` and Draft PR #2 was created against `main`.
-- Not verified: the anonymous blind-sample fields remain uncollected, so the blind gate has not passed.
-- Exact blocker: anonymous Playwright acquisition returned `AMAZON_CAPTCHA_INTERSTITIAL` for the listed samples and 30-second page-navigation timeouts for `amazon-11` and `amazon-12`.
+- Superseded collection status: the anonymous Playwright blind-sample fields remain uncollected, but the connected-Chrome visible-page review above completed the contamination gate.
+- Historical acquisition blocker: the anonymous Playwright path returned `AMAZON_CAPTCHA_INTERSTITIAL` for the listed samples and 30-second page-navigation timeouts for `amazon-11` and `amazon-12`.
 - Superseded anonymous-collector follow-up: do not rerun `pnpm --filter @ecommerce/amazon-spike collect` for blind acceptance until visible Chrome evidence is available.
 - Delivery recovered on 2026-11-07: commit `19ed5d1` was pushed and Draft PR #2 was verified at that head before the dependency-policy follow-up.
 
+## Authorized Chrome blind coverage: amazon-11 through amazon-14
+
+All four records below were checked sequentially through the connected normal Chrome tab. For each record, the input URL ASIN and page-product ASIN matched before the current selection and product-only fields were recorded. No variant control was changed, no image was downloaded, and video thumbnails were excluded from the image lists.
+
+### amazon-11
+
+- Input URL: `https://www.amazon.com/DUMOS-Ottoman-Footstool-Adjustable-Dressing/dp/B0DXF1K79Z/ref=`
+- Canonical URL: `https://www.amazon.com/dp/B0DXF1K79Z`
+- URL ASIN and page ASIN: `B0DXF1K79Z` / `B0DXF1K79Z` (page product-overview module)
+
+| Field | Status | Current-page evidence |
+| --- | --- | --- |
+| title | confirmed_source | `DUMOS Vanity Stool Chair Ottoman with Storage, Makeup Cute Soft Small Footstool Modern Style Faux Fur Seat with 4 Metal Legs & Adjustable Feet for Dressing Living Room Bedroom Dorm` |
+| brand | confirmed_source | Current-page byline: `Visit the DUMOS Store` |
+| selected_color | confirmed_source | Current selection: `White` |
+| selected_size | confirmed_source | Current selection: `12.2 x 16 x 18.9 in` |
+| price | uncertain | The page did not show a reliable current-item buy-box price for the selected delivery location; a generic DOM price was not used as product evidence. |
+| product_dimensions | confirmed_source | Product overview: `12.2 in D x 16 in W x 18.9 in H` |
+| item_weight | missing | No reliable current-page item-weight value. |
+| material | confirmed_source | Product overview: `Frame Material Metal`; `Seat Material Type Faux Fur` |
+| main_image | confirmed_source | `https://m.media-amazon.com/images/I/71PR2XknhJL._AC_SL1500_.jpg` |
+| additional_product_images | confirmed_source | `https://m.media-amazon.com/images/I/41FD2CHxkhL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/51hC1O0id3L._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41IzDDzovvL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/51D2RGxszaL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41uGEtSSMmL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41aVcuLFWcL._AC_US100_.jpg` |
+| bullets | confirmed_source | Five visible product bullets. |
+
+### amazon-12
+
+- Input URL: `https://www.amazon.com/Manyday-Storage-Ottoman-Anti-Slip-Dressing/dp/B0FXWZDK62/ref=`
+- Canonical URL: `https://www.amazon.com/dp/B0FXWZDK62`
+- URL ASIN and page ASIN: `B0FXWZDK62` / `B0FXWZDK62` (page product-overview module)
+
+| Field | Status | Current-page evidence |
+| --- | --- | --- |
+| title | confirmed_source | `Vanity Chair with Storage | Comfy Ottoman with Folding Back` |
+| brand | confirmed_source | Current-page byline: `Visit the Manyday Store` |
+| selected_color | confirmed_source | Current selection: `Beige` |
+| selected_size | missing | No current size-selection field was present. |
+| price | missing | No current-page product price was present. |
+| product_dimensions | confirmed_source | Product overview: `18.5 in D x 19.5 in W x 27.58 in H` |
+| item_weight | missing | No reliable current-page item-weight value. |
+| material | confirmed_source | Product overview: `Faux Fur, Metal` |
+| main_image | confirmed_source | `https://m.media-amazon.com/images/I/61q3QdZryEL._AC_SL1500_.jpg` |
+| additional_product_images | confirmed_source | `https://m.media-amazon.com/images/I/31Af1zrZzSL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41UDUDe5hHL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/31cHYprwjkL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41hj-OptcFL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41BviHD47dL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/51SxRTWVY0L._AC_US100_.jpg` |
+| bullets | confirmed_source | Five visible product bullets. |
+
+### amazon-13
+
+- Input URL: `https://www.amazon.com/SONGMICS-Storage-Ottoman-Hallway-ULOM515WD01/dp/B0FSD1F7YD/ref=`
+- Canonical URL: `https://www.amazon.com/dp/B0FSD1F7YD`
+- URL ASIN and page ASIN: `B0FSD1F7YD` / `B0FSD1F7YD` (page product-overview module)
+
+| Field | Status | Current-page evidence |
+| --- | --- | --- |
+| title | confirmed_source | `SONGMICS Foot Stool Ottoman, Small Storage Ottoman with Legs, 12.2 Inches` |
+| brand | confirmed_source | Current-page byline: `Visit the SONGMICS Store` |
+| selected_color | confirmed_source | Current selection: `White` |
+| selected_size | missing | No current size-selection field was present. |
+| price | uncertain | Raw current-page price text was `$29.74`; no separate current-item price control was retained as provenance. |
+| product_dimensions | confirmed_source | Product overview and bullet: `12.2 in D x 12.2 in W x 11.4 in H` |
+| item_weight | missing | No reliable current-page item-weight value. |
+| material | confirmed_source | Product overview: `Foam, Teddy Fleece`; base/frame: `Rubberwood`, `MDF` |
+| main_image | confirmed_source | `https://m.media-amazon.com/images/I/71l8LPfEYkL._AC_SL1500_.jpg` |
+| additional_product_images | confirmed_source | `https://m.media-amazon.com/images/I/41Ww7XK-2vL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41k9aVF70cL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41tqDrwXL5L._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41RY1jGV6zL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41VmWikOBUL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41QC-SlOymL._AC_US100_.jpg` |
+| bullets | confirmed_source | Five visible product bullets. |
+
+### amazon-14
+
+- Input URL: `https://www.amazon.com/Bsketa%C2%AE-Folding-Storage-Ottoman-Foldable/dp/B0DP8LD4VK/ref=`
+- Canonical URL: `https://www.amazon.com/dp/B0DP8LD4VK`
+- URL ASIN and page ASIN: `B0DP8LD4VK` / `B0DP8LD4VK` (page product-overview module)
+
+| Field | Status | Current-page evidence |
+| --- | --- | --- |
+| title | confirmed_source | `Round Storage Ottoman, 14 in Folding Velvet Foot Stool Rest, Pink` |
+| brand | confirmed_source | Current-page byline: `Visit the Bsketa Store` |
+| selected_color | confirmed_source | Current selection: `Pink 1 Pack` |
+| selected_size | missing | No current size-selection field was present. |
+| price | uncertain | Raw current-page price text was `$29.99`; no separate current-item price control was retained as provenance. |
+| product_dimensions | confirmed_source | Product overview and bullet: `14 in D x 14 in W x 13 in H` |
+| item_weight | missing | No reliable current-page item-weight value. |
+| material | confirmed_source | Product overview: `Velvet`; base/frame: `Engineered Wood` |
+| main_image | confirmed_source | `https://m.media-amazon.com/images/I/71iTT-aulQL._AC_SL1500_.jpg` |
+| additional_product_images | confirmed_source | `https://m.media-amazon.com/images/I/31E+kvlfbTL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41wqXWsjAxL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41J0pd8bw1L._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41vJ1Ys4eUL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/415mpVYq6qL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41Cc9SYyUEL._AC_US100_.jpg`, `https://m.media-amazon.com/images/I/41WFeii2pyL._AC_US100_.jpg` |
+| bullets | confirmed_source | Five visible product bullets. |
+
+### Blind visible-page coverage summary
+
+Across the 48 required blind-field checks (ASIN, selected color, selected size, title, brand, price, dimensions, weight, material, main image, additional images, and bullets), 37 are `confirmed_source`, 8 are `missing`, 3 are `uncertain`, and none are `conflict`. All four URL/page ASIN pairs matched, and no field was sourced from a sibling variant, related product, review, or sponsored result.
+
 ## Decision gate
 
-**not_accepted** — `BLIND_VISIBLE_PAGE_REVIEW_INCOMPLETE`. Acceptance requires completed visible-page comparison for every blind field and no known cross-variant contamination.
+**accepted** — `BLIND_VISIBLE_PAGE_REVIEW_COMPLETE_NO_CROSS_VARIANT_CONTAMINATION`. The gate accepts the current-variant collection evidence only: it does not convert missing or uncertain source fields into confirmed facts, approve images for reuse, or authorize product publication.
 
 ## Acquisition path
 
