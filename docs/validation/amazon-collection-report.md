@@ -154,15 +154,13 @@ Blocking selector/acquisition failures: amazon-01:AMAZON_CAPTCHA_INTERSTITIAL, a
 
 - 2026-11-07 checkpoint: workbook rows 2–4 were verified through the authorized Chrome read-only session; the current-page evidence is recorded above. No CAPTCHA occurred and no variant option was changed.
 - Verified: row-2 URL/page ASIN `B08R93BQ3D`, row-3 URL/page ASIN `B0DC6NJ5P1`, and row-4 URL/page ASIN `B0BJDZFWFD` matched. The row-4 dimensions remain `conflict`; this does not accept the anonymous blind gate.
-- Unverified: the Amazon-spike test, lint, and typecheck suite did not start. `pnpm` stopped during its dependency preflight with `ERR_PNPM_IGNORED_BUILDS` for `esbuild@0.28.2` and `unrs-resolver@1.12.2`; no build-approval policy was changed.
-- Next executable command after the dependency-build policy is resolved by its owner: `pnpm --filter @ecommerce/amazon-spike test`.
-- Latest verified collection-evidence commit: `58bd3be` (`docs: record authorized Amazon sample evidence`).
+- Verified: after applying the repository's existing `allowBuilds` policy for `esbuild` and `unrs-resolver`, Amazon-spike test, lint, and typecheck all passed; the test suite reported 5 files and 13 tests passed.
+- Latest verified collection-evidence commit: `19ed5d1` (`docs: record Amazon rows two through four`).
 - Verified: the authorized Chrome read-only `amazon-01` evidence above; Amazon-spike lint, typecheck, and tests completed before this delivery; the branch was pushed to `origin/agent/amazon-collection-spike` and Draft PR #2 was created against `main`.
 - Not verified: the anonymous blind-sample fields remain uncollected, so the blind gate has not passed.
 - Exact blocker: anonymous Playwright acquisition returned `AMAZON_CAPTCHA_INTERSTITIAL` for the listed samples and 30-second page-navigation timeouts for `amazon-11` and `amazon-12`.
 - Next executable command, only after renewed collection authorization and a valid acquisition path: `pnpm --filter @ecommerce/amazon-spike collect -- --samples spikes/amazon/samples.json --delay-ms 5000`.
-- Delivery blocker (2026-09-13): the single push attempt for the recovery record failed with `Failed to connect to github.com port 443 after 21189 ms: Could not connect to server`; local commit `d98ad53` is not on `origin`.
-- Next delivery command, after GitHub connectivity is restored: `git push`.
+- Delivery recovered on 2026-11-07: commit `19ed5d1` was pushed and Draft PR #2 was verified at that head before the dependency-policy follow-up.
 
 ## Decision gate
 
