@@ -1,0 +1,42 @@
+[
+  {
+    "sampleId": "rectangular-folding-unknown",
+    "sourcePath": "artifacts/private/images/future-user-authorized/amazon-us/B092LVTSD4/rectangular-folding-source.jpg",
+    "asin": "B092LVTSD4",
+    "color": "unknown — confirm from user-authorized source asset",
+    "size": "unknown — confirm from user-authorized source asset",
+    "facts": {}
+  },
+  {
+    "sampleId": "round-unknown",
+    "sourcePath": "artifacts/private/images/future-user-authorized/amazon-us/B0H8WYMT13/round-source.jpg",
+    "asin": "B0H8WYMT13",
+    "color": "unknown — confirm from user-authorized source asset",
+    "size": "unknown — confirm from user-authorized source asset",
+    "facts": {}
+  },
+  {
+    "sampleId": "folding-unknown",
+    "sourcePath": "artifacts/private/images/future-user-authorized/amazon-us/B07FCH521F/folding-source.jpg",
+    "asin": "B07FCH521F",
+    "color": "unknown — confirm from user-authorized source asset",
+    "size": "unknown — confirm from user-authorized source asset",
+    "facts": {}
+  },
+  {
+    "sampleId": "opened-storage-unknown",
+    "sourcePath": "artifacts/private/images/future-user-authorized/amazon-us/B08FCZ2L9X/opened-storage-source.jpg",
+    "asin": "B08FCZ2L9X",
+    "color": "unknown — confirm from user-authorized source asset",
+    "size": "unknown — confirm from user-authorized source asset",
+    "facts": {}
+  },
+  {
+    "sampleId": "light-dark-color-unknown",
+    "sourcePath": "artifacts/private/images/future-user-authorized/amazon-us/B0CCZWFMBF/light-dark-color-source.jpg",
+    "asin": "B0CCZWFMBF",
+    "color": "unknown — confirm from user-authorized source asset",
+    "size": "unknown — confirm from user-authorized source asset",
+    "facts": {}
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "name": "@ecommerce/image-spike",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "build": "tsc --noEmit",
+    "extract": "tsx src/run-extraction.ts",
+    "generate": "tsx src/generate-candidates.ts"
+  },
+  "dependencies": {
+    "@ecommerce/contracts": "workspace:*",
+    "sharp": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "tsx": "latest",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
