@@ -30,7 +30,7 @@
 
 | 流 | 分支与最近提交 | 结论 | 下一步 |
 | --- | --- | --- | --- |
-| 1A Amazon | `agent/amazon-collection-spike` / 远程 `5c6a263`；本地检查点 `69cca1a` 尚未推送；Draft PR [#2](https://github.com/Zerotkk/e-commerce-tools/pull/2) | Chrome 第 2–4 条已只读核对；test 5 文件/13 用例、lint、typecheck 通过；本次恢复时 Chrome 未运行且无扩展标签页，未访问任何真实盲样本，门仍为 `not_accepted` | 用户打开正常 Chrome 的 `https://www.amazon.com/dp/B0DXF1K79Z` 并连接 ChatGPT 扩展后，先恢复 `amazon-11`；网络恢复后再推送本地检查点 |
+| 1A Amazon | `agent/amazon-collection-spike` / `69cca1a`，已推送；Draft PR [#2](https://github.com/Zerotkk/e-commerce-tools/pull/2) | Chrome 第 2–4 条已只读核对；test 5 文件/13 用例、lint、typecheck 通过；本次恢复时 Chrome 未运行且无扩展标签页，未访问任何真实盲样本，门仍为 `not_accepted` | 用户打开正常 Chrome 的 `https://www.amazon.com/dp/B0DXF1K79Z` 并连接 ChatGPT 扩展后，先恢复 `amazon-11` |
 | 1B Ozon | `agent/ozon-api-spike` / `bcafe0a`，已推送，Draft PR [#1](https://github.com/Zerotkk/e-commerce-tools/pull/1) | 分类、属性、字典只读验证通过；没有创建商品；本地保留两个脱敏响应与一个未完成的包构建配置 | 提供真实型号、实测长宽高重量、RUB 价格、VAT 和图片后完成受控导入验证 |
 | 1C Images | `agent/image-pipeline-spike` / `8f70592`，已推送，Draft PR [#3](https://github.com/Zerotkk/e-commerce-tools/pull/3) | 离线主体保真安全校验通过；额度耗尽前确认 Amazon 报告未记录 Black 主图 URL，因此没有下载或处理图片 | 先由 1A 保存当前变体主图 URL，再进行真实图片验证与人工审核 |
 
@@ -50,7 +50,7 @@
 - 2026-11-05 唯一一次 `git push origin main` 失败：`Failed to connect to github.com port 443 after 21123 ms: Could not connect to server`。
 - 2026-11-07 Amazon 分支推送已恢复；Draft PR #2 已核对为 OPEN/Draft，head 为 `5c6a2638b6b98ff215a6bc6546632c7295493d4b`。
 - 2026-11-07 `main` 已成功推送至 `3cc2b90`。
-- Amazon 的 Chrome 连接阻塞已本地提交为 `69cca1a`；唯一一次推送失败：`Failed to connect to github.com port 443 after 21087 ms: Could not connect to server`。网络恢复后的下一条交付命令：`git push origin agent/amazon-collection-spike`。
+- Amazon 的 Chrome 连接阻塞已提交并推送为 `69cca1a`；网络恢复后的推送成功，Draft PR #2 已核对为 OPEN/Draft，head 为 `69cca1a209b0a962425798e0538eaf1f2de4b338`。
 
 ## 中断恢复规则
 
